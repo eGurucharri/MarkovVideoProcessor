@@ -1,0 +1,17 @@
+# Ignorar todos los archivos dentro de la carpeta 'videos' excepto .gitkeep
+/videos/*
+!/videos/.gitkeep
+
+# Ignorar todos los archivos dentro de la carpeta 'outputs' excepto .gitkeep
+/outputs/*
+!/outputs/.gitkeep
+
+# Ignorar otros tipos de archivos
+*.mp4
+*.mov
+*.avi
+
+# Ignorar archivos generados por el IDE (como PyCharm)
+/.idea/
+__pycache__/
+*.pyc
