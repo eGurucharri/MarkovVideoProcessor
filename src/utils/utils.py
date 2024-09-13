@@ -1,4 +1,5 @@
 import os
+from tkinter import messagebox
 
 def update_status(status_text, message):
     """Función para actualizar el cuadro de estado en la UI."""
@@ -15,3 +16,6 @@ def get_unique_filename(directory, base_name, extension):
         counter += 1
     return full_path
 
+def show_message(title, message):
+    """Display a yes/no message box."""
+    return messagebox.askyesno(title, message)
