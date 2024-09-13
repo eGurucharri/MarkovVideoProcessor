@@ -12,6 +12,7 @@
 *.avi
 
 # Ignorar archivos generados por el IDE (como PyCharm)
+.idea/
 /.idea/
 __pycache__/
 *.pyc
