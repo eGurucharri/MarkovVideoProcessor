@@ -1,61 +1,33 @@
 import tkinter as tk
-from tkinter import filedialog
-from src.config import DEFAULT_VIDEO_DIRECTORY, DEFAULT_VIDEO_DURATION, DEFAULT_SEGMENT_DURATION_MIN, DEFAULT_SEGMENT_DURATION_MAX
+from tkinter import ttk
 
-class VideoSettings:
-    def __init__(self, root):
-        """Initialize the video settings section."""
-        self.root = root
 
-        # Video Directory
-        self.label_dir = tk.Label(root, text="Video Directory:")
-        self.label_dir.pack()
-        self.entry_dir = tk.Entry(root, width=50)
-        self.entry_dir.insert(0, DEFAULT_VIDEO_DIRECTORY)
-        self.entry_dir.pack()
-        self.button_browse = tk.Button(root, text="Browse", command=self.browse_folder)
-        self.button_browse.pack()
+class VideoSettingsFrame(ttk.LabelFrame):
+    def __init__(self, parent, default_duration, min_segment_duration, max_segment_duration):
+        super().__init__(parent, text="Video Settings", padding=(10, 5))
+        # Cambia fill="x" por sticky="ew" para expandirse horizontalmente
+        self.grid(padx=10, pady=5, sticky="ew")
 
-        # Duration
-        self.label_duration = tk.Label(root, text="Final Video Duration (seconds):")
-        self.label_duration.pack()
-        self.entry_duration = tk.Entry(root, width=10)
-        self.entry_duration.insert(0, str(DEFAULT_VIDEO_DURATION))
-        self.entry_duration.pack()
+        # Duración del archivo final
+        self.label_duration = ttk.Label(self, text="Video Duration (seconds):")
+        self.label_duration.grid(row=0, column=0, sticky="w", padx=5, pady=5)
 
-        # Segment Duration
-        self.label_min_segment_duration = tk.Label(root, text="Min Segment Duration (seconds):")
-        self.label_min_segment_duration.pack()
-        self.entry_min_segment_duration = tk.Entry(root, width=10)
-        self.entry_min_segment_duration.insert(0, str(DEFAULT_SEGMENT_DURATION_MIN))
-        self.entry_min_segment_duration.pack()
+        self.entry_duration = ttk.Entry(self, width=10)
+        self.entry_duration.insert(0, str(default_duration))
+        self.entry_duration.grid(row=0, column=1, sticky="w", padx=5, pady=5)
 
-        self.label_max_segment_duration = tk.Label(root, text="Max Segment Duration (seconds):")
-        self.label_max_segment_duration.pack()
-        self.entry_max_segment_duration = tk.Entry(root, width=10)
-        self.entry_max_segment_duration.insert(0, str(DEFAULT_SEGMENT_DURATION_MAX))
-        self.entry_max_segment_duration.pack()
+        # Duración mínima de los cortes
+        self.label_min_segment_duration = ttk.Label(self, text="Minimum Segment Duration (seconds):")
+        self.label_min_segment_duration.grid(row=1, column=0, sticky="w", padx=5, pady=5)
 
-        # Output File Name
-        self.label_output = tk.Label(root, text="Output File Name:")
-        self.label_output.pack()
-        self.entry_output = tk.Entry(root, width=50)
-        self.entry_output.insert(0, "output")
-        self.entry_output.pack()
+        self.entry_min_segment_duration = ttk.Entry(self, width=10)
+        self.entry_min_segment_duration.insert(0, str(min_segment_duration))
+        self.entry_min_segment_duration.grid(row=1, column=1, sticky="w", padx=5, pady=5)
 
-    def get_video_settings(self):
-        """Retrieve the video settings from the inputs."""
-        return (
-            self.entry_dir.get(),
-            int(self.entry_duration.get()),
-            self.entry_output.get(),
-            float(self.entry_min_segment_duration.get()),
-            float(self.entry_max_segment_duration.get())
-        )
+        # Duración máxima de los cortes
+        self.label_max_segment_duration = ttk.Label(self, text="Maximum Segment Duration (seconds):")
+        self.label_max_segment_duration.grid(row=2, column=0, sticky="w", padx=5, pady=5)
 
-    def browse_folder(self):
-        """Open a folder selection dialog."""
-        folder_selected = filedialog.askdirectory()
-        if folder_selected:
-            self.entry_dir.delete(0, tk.END)
-            self.entry_dir.insert(0, folder_selected)
+        self.entry_max_segment_duration = ttk.Entry(self, width=10)
+        self.entry_max_segment_duration.insert(0, str(max_segment_duration))
+        self.entry_max_segment_duration.grid(row=2, column=1, sticky="w", padx=5, pady=5)

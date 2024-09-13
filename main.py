@@ -2,7 +2,7 @@ import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
 
-from src.ui.ui import VideoMarkovApp
+from src.ui.main_window import VideoMarkovApp
 import tkinter as tk
 
 if __name__ == "__main__":
