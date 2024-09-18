@@ -2,11 +2,13 @@ from moviepy.editor import VideoFileClip
 import os
 import random
 
+
+
 def load_videos(directory):
     """Carga los videos desde el directorio especificado."""
     video_clips = []
     for filename in os.listdir(directory):
-        if filename.endswith(".mp4") or filename.endswith(".mov"):
+        if filename.endswith(".mp4") or filename.endswith(".mov") or filename.endswith(".mkv"):
             video_clips.append(VideoFileClip(os.path.join(directory, filename)))
     return video_clips
 
